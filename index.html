@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Weather</title>
+    <!--Compiled and minified jquery-->
+    <script
+      src="http://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header">
+      Weather Dashboard
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <br />
+          <h3>Search for a city :</h3>
+          <form class="form-inline mt-2 mt-md-0">
+            <input
+              class="form-control mr-ms-2"
+              type="text"
+              placeholder="Search for a city"
+              aria-label="Search"
+            />
+            <br />
+            <button class="btn btn-outline-success my-2 my-ms-0" type="submit">
+              Search
+            </button>
+          </form>
+          <div class="cityViewed"></div>
+        </div>
+        <div class="col-lg-9">
+          <div class="row" id="todayWeather">
+            <h2 class="current-city">City (Month DD, YYYY)</h2>
+            <div id="temp">Tempeture:</div>
+            <div id="hum">Humidity:</div>
+            <div id="windy">Windy speed:</div>
+            <div id="uv">UV-index:</div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <h2>5-Day Forecast:</h2>
+            </div>
+          </div>
+          <div class="row" id="forecast">
+            <div class="col-lg">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <p class="card-text">
+                    Some quick example text up the bulk of the card's content.
+                  </p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <p class="card-text">
+                    Some quick ee and make up the bulk of the card's content.
+                  </p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <p class="card-text">
+                    Some quick example text s content.
+                  </p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <p class="card-text">
+                    Some quick example text ontent.
+                  </p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <p class="card-text">
+                    Some quick example text to the card's content.
+                  </p>
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
