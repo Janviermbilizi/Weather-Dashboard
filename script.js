@@ -6,21 +6,21 @@ $(document).ready(function() {
 
   var input = $(".form-control");
   var currentDate = moment().format("LL");
-  var inputStr = JSON.stringify(input.val());
   //variables
   var apiKey = "af82d5a25061873accbbaaf6cb52f8c5";
   var queryURL =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
-    inputStr +
+    input.val("") +
     "&units=imperial&appid=" +
     apiKey;
 
   $(".btn").on("click", function(event) {
     event.preventDefault();
-    console.log(queryURL);
     //get API data
-    $.ajax({ url: queryURL, type: "GET" }).then(function(response) {});
-    $(".current-city").text(input.val() + " (" + currentDate + ")");
-    input.val("");
+    $.ajax({ url: queryURL, type: "GET" }).then(function(response) {
+      console.log(response);
+      $(".current-city").text(input.val() + " (" + currentDate + ")");
+      input.val("");
+    });
   });
 });
