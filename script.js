@@ -17,10 +17,8 @@ $(document).ready(function() {
   $(".btn").on("click", function(event) {
     event.preventDefault();
     //get API data
-    $.ajax({ url: queryURL, type: "GET" }).then(function(response) {
-      console.log(response);
-      $(".current-city").text(input.val() + " (" + currentDate + ")");
-      input.val("");
-    });
+    $.ajax({ url: queryURL, type: "GET" }).then(function(response) {});
+    $(".current-city").text(input.val() + " (" + currentDate + ")");
+    input.val("");
   });
 });
