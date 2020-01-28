@@ -3,11 +3,11 @@
 
 // selectors
 
-var input = $(".form-control");
-var currentDate = moment().format("LL");
 //variables
 $(".btn").on("click", function(event) {
   event.preventDefault();
+  var input = $(".form-control");
+  var currentDate = moment().format("LL");
   var apiKey = "af82d5a25061873accbbaaf6cb52f8c5";
   var queryURL =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
