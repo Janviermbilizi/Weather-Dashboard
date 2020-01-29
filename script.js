@@ -17,7 +17,6 @@ $(document).ready(function() {
     //get API data
     console.log(queryURL);
     $.ajax({ url: queryURL, type: "GET" }).then(function(response) {
-      console.log(response);
       $(".current-city").text(input.val() + " (" + currentDate + ")");
       $("#temp").text("Tempeture : " + response.main.temp + " °F");
       $("#hum").text("Humidity : " + response.main.humidity + " %");
@@ -34,6 +33,12 @@ function getUV(lat, lon) {
   var uvIndexURL =
     "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=" +
     apiKey +
-    "&lat={lat}&lon={lon}&cnt=1";
-  console, log(uvIndexURL);
+    "&lat=" +
+    lat +
+    "&lon=" +
+    lon +
+    "&cnt=1";
+  $.ajax({ url: uvIndexURL, type: "GET" }).then(function(response) {
+    $("#uv").text("UV-index : " + response[0].value);
+  });
 }
