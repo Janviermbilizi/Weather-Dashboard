@@ -31,7 +31,7 @@ $(document).ready(function() {
 });
 function getUV(lat, lon) {
   var uvIndexURL =
-    "http://api.openweathermap.org/data/2.5/uvi/forecast?appid=" +
+    "https://api.openweathermap.org/data/2.5/uvi/forecast?appid=" +
     apiKey +
     "&lat=" +
     lat +
