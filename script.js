@@ -15,7 +15,7 @@ $(document).ready(function() {
       "&units=imperial&appid=" +
       apiKey;
     //get API data
-    console.log(queryURL);
+
     $.ajax({ url: queryURL, type: "GET" }).then(function(response) {
       $(".current-city").text(input.val() + " (" + currentDate + ")");
       $("#temp").text("Tempeture : " + response.main.temp + " °F");
