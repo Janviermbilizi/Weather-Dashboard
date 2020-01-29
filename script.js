@@ -25,20 +25,22 @@ $(document).ready(function() {
       var tempF = (response.main.temp - 273.15) * 1.8 + 32;
       $(".tempF").text("Temperature (Kelvin) " + tempF);
       input.val("");
+ 
       getUV(response.coord.lat, response.coord.lon);
     });
   });
+
+  function getUV(lat, lon) {
+    var uvIndexURL =
+      "https://api.openweathermap.org/data/2.5/uvi/forecast?appid=" +
+      apiKey +
+      "&lat=" +
+      lat +
+      "&lon=" +
+      lon +
+      "&cnt=1";
+    $.ajax({ url: uvIndexURL, type: "GET" }).then(function(response) {
+      $("#uv").text("UV-index : " + response[0].value);
+    });
+  }
 });
-function getUV(lat, lon) {
-  var uvIndexURL =
-    "https://api.openweathermap.org/data/2.5/uvi/forecast?appid=" +
-    apiKey +
-    "&lat=" +
-    lat +
-    "&lon=" +
-    lon +
-    "&cnt=1";
-  $.ajax({ url: uvIndexURL, type: "GET" }).then(function(response) {
-    $("#uv").text("UV-index : " + response[0].value);
-  });
-}
