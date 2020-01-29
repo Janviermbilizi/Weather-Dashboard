@@ -16,8 +16,13 @@ $(".btn").on("click", function(event) {
     apiKey;
   //get API data
   $.ajax({ url: queryURL, type: "GET" }).then(function(response) {
-    console.log(response);
     $(".current-city").text(input.val() + " (" + currentDate + ")");
+    $("#temp").text("Tempeture (F): " + response.main.temp);
+    $("#hum").text("Humidity: " + response.main.humidity);
+    $("#windy").text("Wind Speed: " + response.wind.speed);
+    // Converts the temp to Kelvin with the below formula
+    var tempF = (response.main.temp - 273.15) * 1.8 + 32;
+    $(".tempF").text("Temperature (Kelvin) " + tempF);
     input.val("");
   });
 });
