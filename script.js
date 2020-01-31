@@ -57,32 +57,18 @@ $(document).ready(function() {
 
     $.ajax({ url: forecastURL, type: "GET" }).then(function(response) {
       var list = response.list;
-
+      console.log(response);
+      // for each iteration of our loop
       for (var i = 0; i < list.length; i = i + 8) {
-        var temp = (list[i].main.temp - 273.15) * 1.8 + 32;
+        var temp = ((list[i].main.temp - 273.15) * 1.8 + 32).toFixed(2);
         var humidity = list[i].main.humidity;
         var date = new Date(list[i].dt_txt);
 
-        var monthNames = [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December"
-        ];
-
         var day = date.getDate();
-        var month = date.getMonth();
+        var month = date.getMonth() + 1;
         var year = date.getFullYear();
 
-        var formatedDate = `${monthNames[month]} ${day}, ${year}`;
+        var formatedDate = `${month}/${day}/${year}`;
         // Creating and storing a div tag
         var col = $("<div>");
         col.addClass("col-lg-2");
@@ -90,43 +76,20 @@ $(document).ready(function() {
         mycard.addClass("card");
         col.append(mycard);
 
-        // Creating a paragraph tag with the result item's rating
+        // Creating a paragraph tag with the response item
         var p = $("<p>").text(formatedDate);
         var p1 = $("<p>").text("temp: " + temp + "°F");
         var p2 = $("<p>").text("humidity: " + humidity + "%");
 
-        // Creating and storing an image tag
-        //var weatherImage = $("<img>");
-        // Setting the src attribute of the image to a property pulled off the result item
-        // weatherImage.attr("src", results[i].images.fixed_height.url);
-
-        // Appending the paragraph and image tag to the animalDiv
+        // Appending the paragraph and image tag to mycard
         mycard.append(p);
         //mycard.appendChild(weatherImage);
         mycard.append(p1);
         mycard.append(p2);
 
-        // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
+        // Prependng the col to the HTML page in the "#forecast" div
         $("#forecast").prepend(col);
-        //-----------------------------------------
-
-        //---------------------------------------------------
-
-        //        var col = $("<div>");
-        //        col.classList.add("col-lg-2");
-        //
-        //       var card = document.createElement("div");
-        //        card.classList.add("card");
-
-        //        var textNode = document.createTextNode("hello, world!");
-
-        //        col.appendChild(card).appendChild(textNode);
-
-        //        var forecast = document.getElementById("forecast");
-        //        forecast.appendChild(col);
       }
-
-      // for each iteration of our loop
       // 1) extract data from response
       // 2) add nodes to the dom
     });
