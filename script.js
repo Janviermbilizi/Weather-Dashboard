@@ -107,8 +107,6 @@ $(document).ready(function() {
         // Prependng the col to the HTML page in the "#forecast" div
         $("#forecast").prepend(col);
       }
-      // 1) extract data from response
-      // 2) add nodes to the dom
     });
   }
 });
