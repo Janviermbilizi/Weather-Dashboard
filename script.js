@@ -19,7 +19,16 @@ $(document).ready(function() {
     //get API data
 
     $.ajax({ url: queryURL, type: "GET" }).then(function(response) {
+      //icon url var, url and element
+
+      var iconLoc = response.weather[0].icon;
+
+      var iconSrc = "https://openweathermap.org/img/wn/" + iconLoc + "@2x.png";
+      var iconImage = $("<img>");
+      iconImage.attr("src", iconSrc);
+
       $(".current-city").text(city + " (" + currentDate + ")");
+      $(".current-city").append(iconImage);
       $("#temp").text("Tempeture : " + response.main.temp + " °F");
       $("#hum").text("Humidity : " + response.main.humidity + " %");
       $("#windy").text("Wind Speed : " + response.wind.speed + " MPH");
@@ -57,10 +66,10 @@ $(document).ready(function() {
 
     $.ajax({ url: forecastURL, type: "GET" }).then(function(response) {
       var list = response.list;
-      console.log(response);
       // for each iteration of our loop
       for (var i = 0; i < list.length; i = i + 8) {
         var temp = ((list[i].main.temp - 273.15) * 1.8 + 32).toFixed(2);
+        var iconId = list[i].weather[0].icon;
         var humidity = list[i].main.humidity;
         var date = new Date(list[i].dt_txt);
 
@@ -71,19 +80,27 @@ $(document).ready(function() {
         var formatedDate = `${month}/${day}/${year}`;
         // Creating and storing a div tag
         var col = $("<div>");
-        col.addClass("col-lg-2");
+        col.addClass("col");
         var mycard = $("<div>");
         mycard.addClass("card");
         col.append(mycard);
 
         // Creating a paragraph tag with the response item
         var p = $("<p>").text(formatedDate);
-        var p1 = $("<p>").text("temp: " + temp + "°F");
-        var p2 = $("<p>").text("humidity: " + humidity + "%");
+        // Creating and storing an image tag
+
+        var iconUrl = "https://openweathermap.org/img/wn/" + iconId + "@2x.png";
+
+        var weatherImage = $("<img>");
+        // Setting the src attribute of the image to a property pulled off the result item
+        weatherImage.attr("src", iconUrl);
+
+        var p1 = $("<p>").text("Temp: " + temp + "°F");
+        var p2 = $("<p>").text("Humidity: " + humidity + "%");
 
         // Appending the paragraph and image tag to mycard
         mycard.append(p);
-        //mycard.appendChild(weatherImage);
+        mycard.append(weatherImage);
         mycard.append(p1);
         mycard.append(p2);
 
