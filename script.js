@@ -1,6 +1,17 @@
 var apiKey = "af82d5a25061873accbbaaf6cb52f8c5";
+var cities = [];
+
+function loadFromStore() {
+  cities = JSON.parse(localStorage.getItem("cities")) || [];
+}
+
+function saveToStore() {
+  localStorage.setItem("cities", JSON.stringify(cities));
+}
 
 $(document).ready(function() {
+  loadFromStore();
+  console.log(cities);
   //sample for city and date
   //$("#current-city").text(CityName + " " + date + " " + img);
   // selectors
@@ -9,6 +20,9 @@ $(document).ready(function() {
     event.preventDefault();
     var input = $(".form-control");
     var city = input.val();
+    cities.push(city);
+    saveToStore();
+
     var currentDate = moment().format("LL");
     var queryURL =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -66,15 +80,17 @@ $(document).ready(function() {
 
     $.ajax({ url: forecastURL, type: "GET" }).then(function(response) {
       var list = response.list;
+      console.log(response);
       // for each iteration of our loop
-      for (var i = 0; i < list.length; i = i + 8) {
+      $("#forecast").html("");
+      for (var i = 39; i >= 0; i = i - 8) {
         var temp = ((list[i].main.temp - 273.15) * 1.8 + 32).toFixed(2);
         var iconId = list[i].weather[0].icon;
         var humidity = list[i].main.humidity;
         var date = new Date(list[i].dt_txt);
 
         var day = date.getDate();
-        var month = date.getMonth() + 1;
+        var month = date.getMonth();
         var year = date.getFullYear();
 
         var formatedDate = `${month}/${day}/${year}`;
@@ -105,6 +121,7 @@ $(document).ready(function() {
         mycard.append(p2);
 
         // Prependng the col to the HTML page in the "#forecast" div
+
         $("#forecast").prepend(col);
       }
     });
