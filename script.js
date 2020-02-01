@@ -8,20 +8,39 @@ function loadFromStore() {
 function saveToStore() {
   localStorage.setItem("cities", JSON.stringify(cities));
 }
+function citiesDisplay() {
+  cities.reverse();
+
+  var limit;
+
+  if (cities.length < 10) {
+    limit = cities.length;
+  } else {
+    limit = 10;
+  }
+  $("#cityViewed").html("");
+  for (var c = 0; c < limit; c++) {
+    var cityViewed = $("<div>");
+    cityViewed.addClass("row");
+    cityViewed.text(cities[c]);
+    $("#cityViewed").append(cityViewed);
+  }
+}
 
 $(document).ready(function() {
   loadFromStore();
-  console.log(cities);
+  citiesDisplay();
   //sample for city and date
-  //$("#current-city").text(CityName + " " + date + " " + img);
-  // selectors
-  //variables
   $(".btn").on("click", function(event) {
     event.preventDefault();
+
     var input = $(".form-control");
     var city = input.val();
-    cities.push(city);
-    saveToStore();
+    if (!cities.includes(city)) {
+      cities.push(city);
+      saveToStore();
+    }
+    citiesDisplay();
 
     var currentDate = moment().format("LL");
     var queryURL =
