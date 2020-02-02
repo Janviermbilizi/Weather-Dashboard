@@ -1,5 +1,6 @@
 var apiKey = "af82d5a25061873accbbaaf6cb52f8c5";
 var cities = [];
+cities.reverse();
 
 function loadFromStore() {
   cities = JSON.parse(localStorage.getItem("cities")) || [];
@@ -9,8 +10,6 @@ function saveToStore() {
   localStorage.setItem("cities", JSON.stringify(cities));
 }
 function citiesDisplay() {
-  cities.reverse();
-
   var limit;
 
   if (cities.length < 10) {
@@ -21,9 +20,15 @@ function citiesDisplay() {
   $("#cityViewed").html("");
   for (var c = 0; c < limit; c++) {
     var cityViewed = $("<div>");
-    cityViewed.addClass("row");
-    cityViewed.text(cities[c]);
-    $("#cityViewed").append(cityViewed);
+    cityViewed.addClass("row").css({
+      textAlign: "center",
+      border: "1px solid gray",
+      height: "50px",
+      lineHeight: "50px",
+      paddingLeft: "40px"
+    });
+    cityViewed.html(cities[c]);
+    $("#cityViewed").prepend(cityViewed);
   }
 }
 
