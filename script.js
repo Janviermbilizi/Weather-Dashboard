@@ -65,7 +65,7 @@ $(document).ready(function() {
       var iconImage = $("<img>");
       iconImage.attr("src", iconSrc);
 
-      $(".current-city").text(city + " (" + currentDate + ")");
+      $(".current-city").text(response.name + " (" + currentDate + ")");
       $(".current-city").append(iconImage);
       $("#temp").text("Tempeture : " + response.main.temp + " °F");
       $("#hum").text("Humidity : " + response.main.humidity + " %");
@@ -73,7 +73,6 @@ $(document).ready(function() {
       // Converts the temp to Kelvin with the below formula
       var tempF = (response.main.temp - 273.15) * 1.8 + 32;
       $(".tempF").text("Temperature (Kelvin) " + tempF);
-
       getUV(response.coord.lat, response.coord.lon);
       forecast(city);
       input.val("");
