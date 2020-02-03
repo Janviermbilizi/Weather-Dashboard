@@ -7,6 +7,7 @@ The name of this app is <i>Weather Dashboard </i> as it is designed to give weat
 <strong>Description</strong>
 
 As a web developer, I want a deployed portfolios that can showcase my work to potential employers and clients. It is in that spirit that my instructor gave me and other students a homework 6 to design a web application that provide weather information to the user with 5 day forecast.
+<img src="./Screen Shot 2020-02-03 at 2.49.41 PM.png">
 
 <strong>Programs used</strong>
 
