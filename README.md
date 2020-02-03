@@ -2,7 +2,7 @@
 
 <strong> Name </strong>
 
-The name of this app is <i>Weather-Dashboard </i> as it is designed to give weather information to the user.
+The name of this app is <i>Weather Dashboard </i> as it is designed to give weather information to the user.
 
 <strong>Description</strong>
 
