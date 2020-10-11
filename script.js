@@ -9,6 +9,30 @@ function loadFromStore() {
 function saveToStore() {
   localStorage.setItem("cities", JSON.stringify(cities));
 }
+
+$(document).ready(function () {
+  loadFromStore();
+  if (cities[0]) {
+    getCity(cities[cities.length - 1]);
+  }
+
+  citiesDisplay();
+  //sample for city and date
+  $(".btn").on("click", function (event) {
+    event.preventDefault();
+
+    var input = $(".form-control");
+    var city = input.val();
+    if (!cities.includes(city)) {
+      cities.push(city);
+      saveToStore();
+    }
+    citiesDisplay();
+    getCity(city);
+  });
+  //code for Uv index
+});
+
 function citiesDisplay() {
   var limit;
 
@@ -25,7 +49,7 @@ function citiesDisplay() {
       border: "1px solid gray",
       height: "50px",
       lineHeight: "50px",
-      paddingLeft: "40px"
+      paddingLeft: "40px",
     });
     cityViewed.html(cities[c]);
     $("#cityViewed").prepend(cityViewed);
@@ -42,7 +66,7 @@ function getCity(city) {
 
   //get API data
 
-  $.ajax({ url: queryURL, type: "GET" }).then(function(response) {
+  $.ajax({ url: queryURL, type: "GET" }).then(function (response) {
     //icon url var, url and element
 
     var iconLoc = response.weather[0].icon;
@@ -74,7 +98,7 @@ function getUV(lat, lon) {
     "&lon=" +
     lon +
     "&cnt=1";
-  $.ajax({ url: uvIndexURL, type: "GET" }).then(function(response) {
+  $.ajax({ url: uvIndexURL, type: "GET" }).then(function (response) {
     $("#uv").text("UV-index : " + response[0].value);
   });
 }
@@ -87,7 +111,7 @@ function forecast(city) {
     "&appid=" +
     apiKey;
 
-  $.ajax({ url: forecastURL, type: "GET" }).then(function(response) {
+  $.ajax({ url: forecastURL, type: "GET" }).then(function (response) {
     var list = response.list;
     console.log(response);
     // for each iteration of our loop
@@ -102,7 +126,7 @@ function forecast(city) {
       var month = date.getMonth();
       var year = date.getFullYear();
 
-      var formatedDate = `${month}/${day}/${year}`;
+      var formatedDate = `${month + 1}/${day}/${year}`;
       // Creating and storing a div tag
       var col = $("<div>");
       col.addClass("col");
@@ -135,25 +159,3 @@ function forecast(city) {
     }
   });
 }
-$(document).ready(function() {
-  loadFromStore();
-  if (cities[0]) {
-    getCity(cities[cities.length - 1]);
-  }
-
-  citiesDisplay();
-  //sample for city and date
-  $(".btn").on("click", function(event) {
-    event.preventDefault();
-
-    var input = $(".form-control");
-    var city = input.val();
-    if (!cities.includes(city)) {
-      cities.push(city);
-      saveToStore();
-    }
-    citiesDisplay();
-    getCity(city);
-  });
-  //code for Uv index
-});
