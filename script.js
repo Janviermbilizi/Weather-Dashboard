@@ -53,6 +53,12 @@ function citiesDisplay() {
     });
     cityViewed.html(cities[c]);
     $("#cityViewed").prepend(cityViewed);
+
+    //OnClick event on each city
+    cityViewed.attr("id", `${cities[c]}`);
+    $(`#${cities[c]}`).on("click", function () {
+      getCity($(this).text());
+    });
   }
 }
 
