@@ -46,7 +46,7 @@ function citiesDisplay() {
     var cityViewed = $("<div>");
     cityViewed.addClass("row").css({
       textAlign: "center",
-      border: "1px solid gray",
+      border: "1px solid silver",
       height: "50px",
       lineHeight: "50px",
       paddingLeft: "40px",
